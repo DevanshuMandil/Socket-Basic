@@ -16,7 +16,7 @@ $("document").ready(function(){
 
 						    error: function(e)
 								    {
-								    	alert("Something went wrong!!!!");	
+								    	$(location).attr('href',"/index.html");
 								    }
   						});
 
