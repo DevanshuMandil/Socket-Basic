@@ -152,7 +152,7 @@ app.post('/user/login',function(req,res){
 
 // GET /joinrooms
 app.get('/joinrooms',middleware.requireAuthentication,function(req,res){
-	res.status(200).json()
+	res.status(200).json(getJoinRooms());
 });
 
 db.sequelize.sync({ 
