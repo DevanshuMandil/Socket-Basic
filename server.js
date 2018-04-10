@@ -1,9 +1,16 @@
 var PORT = process.env.PORT || 3000;
-var moment = require('moment');
 var express = require('express');
+var moment = require('moment');
+var bodyParser = require('body-parser');
+var _ = require('underscore');
+var db = require('./db.js')
+var middleware = require('./middleware.js')(db);
+
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname+'/public'));
 
@@ -89,6 +96,56 @@ io.on('connection',function(socket){
 	});
 });
 
-http.listen(PORT,function(){
+
+// POST /user
+app.post('/user',function(req,res){
+	var body = _.pick(req.body,'username','email','phone_no','password');
+
+	db.user.create({
+		username: body.username,
+		email: body.email,
+		phone_no: body.phone_no,
+		password: body.password
+	}).then(function(user){
+		res.status(200).json(user.toPublicJSON());
+	}).catch(function(e){
+		res.status(400).json(e);
+	});
+});
+
+
+// POST /user/login
+app.post('/user/login',function(req,res){
+	var body = _.pick(req.body, 'email', 'password');
+	var userInstance;
+
+	db.user.authenticate(body).then(function(user) {
+
+		var token = user.generateToken('authentication');
+		userInstance = user;
+
+		return db.token.create({
+			token: token
+		});
+		//res.status(200).json(user.toPublicJSON());
+	}).then(function(tokenInstance) {
+
+		res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
+	}).catch(function() {
+		res.status(401).send();
+	});
+});
+
+
+// GET /joinrooms
+app.use('/joinrooms',function(req,res){
+	res.send('<h1>Join Room</h1>');
+});
+
+db.sequelize.sync({ 
+	force: false
+}).then(function(){
+	http.listen(PORT,function(){
 	console.log('Server started!!');
+	});	
 });
