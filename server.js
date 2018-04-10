@@ -43,6 +43,19 @@ function sendCurrentUsers(socket)
 	});
 }
 
+//GET ALL JOIN ROOMS
+
+function getJoinRooms()
+{
+	var rooms=[];
+	Object.keys(clientInfo).forEach(function(socketId){
+		 var userInfo = clientInfo[socketId];
+		 rooms.push(userInfo.room);
+		//console.log(userInfo.room);
+	});
+	return rooms;
+}
+
 io.on('connection',function(socket){
 	console.log('User connected via socket.io');
 
@@ -138,12 +151,12 @@ app.post('/user/login',function(req,res){
 
 
 // GET /joinrooms
-app.use('/joinrooms',function(req,res){
-	res.send('<h1>Join Room</h1>');
+app.get('/joinrooms',middleware.requireAuthentication,function(req,res){
+	res.status(200).json()
 });
 
 db.sequelize.sync({ 
-	force: false
+	force: true
 }).then(function(){
 	http.listen(PORT,function(){
 	console.log('Server started!!');
