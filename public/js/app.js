@@ -2,6 +2,8 @@ var name = getQueryVariable('name') || 'Anonymous';
 var room = getQueryVariable('room');
 var socket = io();
 
+sessionStorage.setItem("username","hellokitty");
+
 //upgrade h1 tag
 jQuery('.room-tittle').text(room);
 
@@ -11,7 +13,7 @@ socket.on('connect',function(){
 	console.log('Connected to socket.io server!');
 	socket.emit('joinRoom', {
 		name: name,
-		room: room
+		room: room,
 	});
 });
 
