@@ -1,80 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
+
 <head>
-	<meta charset="utf-8">
-	<title>ChatApp</title>
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+  <meta charset="UTF-8">
+  <title>Chat app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
 </head>
+
 <body>
-		<div class="vertical-center">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4 well">
-						<a href="/userlogin.html"><b>Login</b></a>
 
-						<h1 class="text-center">SignUP</h1>
+  <div class="signup__container">
+  <div class="container__child signup__thumbnail">
+    <div class="thumbnail__content text-center">
+      <h1 class="heading--primary">Welcome to MI6.</h1>
+      <h2 class="heading--secondary">Are you ready to join the elite?</h2>
+    </div>
+    <div class="signup__overlay"></div>
+  </div>
+  <div class="container__child signup__form">
+      
+      <h1 class="text-center" style="color:#808080;"><b>Sign Up</b></h1>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input class="form-control" type="text" name="username" id="username" placeholder="james.bond" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="text" name="email" id="email" placeholder="james.bond@spectre.com" required />
+      </div>
 
-							<div class="form-group">
-								<label>USER NAME</label>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="glyphicon glyphicon-user"></i>
-									</span>
-									<input type="text" id="username" class="form-control"/>
-								</div> 
-							</div>
+      <div class="form-group">
+        <label for="phone_no">Phone No.</label>
+        <input class="form-control" type="text" name="phone_no" id="phone_no" placeholder="10 Digit-no." required />
+      </div>
 
-							<div class="form-group">
-								<label>Email</label>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="glyphicon glyphicon-user"></i>
-									</span>
-									<input type="Email" id="email" class="form-control"/>
-								</div> 
-							</div>
-
-							<div class="form-group">
-								<label>Phone No.</label>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="glyphicon glyphicon-user"></i>
-									</span>
-									<input type="text" id="phone_no" class="form-control"/>
-								</div> 
-							</div>
-
-							<div class="form-group">
-								<label>Password</label>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="glyphicon glyphicon-user"></i>
-									</span>
-									<input type="Password" id="password" class="form-control"/>
-								</div> 
-							</div>
-
-							<div class="form-group">
-								<label>Confirm Password</label>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="glyphicon glyphicon-user"></i>
-									</span>
-									<input type="Password" id="confirm_password" class="form-control"/>
-								</div> 
-							</div>
-
-							<div>
-								<input type="submit" value="Sign Up" id="signup" class="btn btn-primary btn-block"/>
-							</div>
-						</form>
-					</div>					
-				</div>
-			</div>	
-		</div>
-
-		<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="/js/signup.js"></script>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" id="password" placeholder="********" required />
+      </div>
+      <div class="form-group">
+        <label for="passwordRepeat">Repeat Password</label>
+        <input class="form-control" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" required />
+      </div>
+      <div class="m-t-lg"
+        <ul class="list-inline">
+          <li>
+            <input class="btn btn--form" type="submit" value="sign up" id="signup" />
+          </li>
+          <li>
+            <a class="signup__link" href="login.html">I am already a member</a>
+          </li>
+        </ul>
+      </div>
+  </div>
+</div>
+	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="./js/signup.js"></script>
 </body>
+
 </html>

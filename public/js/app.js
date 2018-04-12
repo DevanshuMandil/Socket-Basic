@@ -2,8 +2,6 @@ var name = getQueryVariable('name') || 'Anonymous';
 var room = getQueryVariable('room');
 var socket = io();
 
-sessionStorage.setItem("username","hellokitty");
-
 //upgrade h1 tag
 jQuery('.room-tittle').text(room);
 
