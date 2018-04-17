@@ -5,6 +5,21 @@
 	align-items: center;
 }
 
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
+
+.darker {
+    
+    background-color: #E5E4E2;
+}
+
 h1 {
 	margin: 24px 0;
 }

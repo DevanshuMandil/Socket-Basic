@@ -1,6 +1,7 @@
 var name = getQueryVariable('name') || 'Anonymous';
 var room = getQueryVariable('room');
 var socket = io();
+var id = sessionStorage.getItem("id");
 
 //upgrade h1 tag
 jQuery('.room-tittle').text(room);
@@ -17,15 +18,22 @@ socket.on('connect',function(){
 
 socket.on('message',function(message){
 	var momentTimestamp = moment.utc(message.timestamp);
-	var $messages = jQuery('.messages');
-	var $message = jQuery('<li class="list-group-item"></li>')
+	var $messages = jQuery('.chat');
 
-	console.log('New message:');
-	console.log(message.text);
-
-	$message.append('<p><strong>' + message.name + ' ' + momentTimestamp.local().format('h:mm a') + '</strong></p>')
-	$message.append('<p>' + message.text + '</p>')
-	$messages.append($message);
+	if(message.id !== id)
+	{
+		var $message = jQuery('<li class="left clearfix"></li>');
+		$message.append('<span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/></span');
+		$message.append('<div class="chat-body clearfix"> <div class="header"><strong class="primary-font">'+message.name+'</strong><small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+momentTimestamp.local().format('h:mm a')+'</small></div><p>'+message.text+'</p></div>');
+		$messages.append($message);
+	}
+	else
+	{
+		var $message = jQuery('<li class="right clearfix"></li>');
+		$message.append('<span class="chat-img pull-right"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/></span');
+		$message.append('<div class="chat-body clearfix"> <div class="header"><strong class="pull-right primary-font">'+message.name+'</strong><small class="text-muted"><span class="glyphicon glyphicon-time"></span>'+momentTimestamp.local().format('h:mm a')+'</small></div><p class="pull-right">'+message.text+'</p></div>');
+		$messages.append($message);	
+	}
 	//jQuery('.messages').append('<p><strong>' + momentTimestamp.local().format('h:mm a') +':  </strong>' + message.text + '</p>');
 });
 
@@ -38,7 +46,8 @@ $form.on('submit',function(event){
 		$message = $form.find('input[name=message]'); 
 		socket.emit('message',{
 			name: name, 
-			text: $message.val()
+			text: $message.val(),
+			id: sessionStorage.getItem("id")
 		});
 
 		$message.val('');

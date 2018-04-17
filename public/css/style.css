@@ -43,7 +43,8 @@ a,
 }
 
 body {
-  background: url(https://newevolutiondesigns.com/images/freebies/city-wallpaper-18.jpg) no-repeat fixed;
+  background: url(https://companyofburninghearts.files.wordpress.com/2015/03/city-wallpaper-18.jpg) no-repeat fixed;
+  background-image: "./img/city-wallpaper.jpg";
 }
 
 .signup__thumbnail {

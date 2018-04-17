@@ -11,7 +11,11 @@ $("document").ready(function(){
 						    dataType: 'json',
 						    success: function(data,status,request){
 						    		alert("Authenticated");
-						    		alert(data);
+						    		
+						    		for(var i=0;i< data.length;i++)
+							    		{
+							    			alert(data[i]);	
+							    		}
 						    		},
 
 						    error: function(e)

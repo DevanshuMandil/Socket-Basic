@@ -23,6 +23,7 @@ $("document").ready(function(){
 						    	sessionStorage.setItem("token",request.getResponseHeader('Auth'));
 						    	sessionStorage.setItem("username",data.username);
 						    	sessionStorage.setItem("email",data.email);
+						    	sessionStorage.setItem("id",Math.random());
 						    	var page_url="/joinroom.html";
 								$(location).attr('href',page_url);
 

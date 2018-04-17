@@ -152,11 +152,11 @@ app.post('/user/login',function(req,res){
 
 // GET /joinrooms
 app.get('/joinrooms',middleware.requireAuthentication,function(req,res){
-	res.status(200).json(getJoinRooms());
+	res.status(200).json(_.uniq(getJoinRooms()));
 });
 
 db.sequelize.sync({ 
-	force: true
+	force: false
 }).then(function(){
 	http.listen(PORT,function(){
 	console.log('Server started!!');
